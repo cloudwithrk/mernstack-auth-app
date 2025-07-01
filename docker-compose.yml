@@ -24,6 +24,11 @@ services:
       - mysql
     networks:
       - mernstack
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: auth_task_db
   fronted:
     container_name: reactjs
     image: cloudwithrk/reactfrontend:latest
