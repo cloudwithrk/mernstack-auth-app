@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   mysql:
     container_name: mysql
@@ -15,34 +14,32 @@ services:
       MYSQL_DATABASE: auth_task_db 
     networks:
       - mernstack
-
+   
   backend:
     container_name: nodejs
     image: cloudwithrk/nodebackend:latest
     ports:
-      - "5000:5000"
+      - 5000:5000
     depends_on:
       - mysql
+    networks:
+      - mernstack
     environment:
       DB_HOST: mysql
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: auth_task_db
-    networks:
-      - mernstack
-    # optional agar wait-for-it.sh use karo:
-    # entrypoint: ["./wait-for-it.sh", "mysql:3306", "--", "node", "server.js"]
-
-  frontend:
+  fronted:
     container_name: reactjs
     image: cloudwithrk/reactfrontend:latest
     ports:
       - 3000:3000
     networks:
       - mernstack
-
+  
+    
+    
 volumes:
   mysql_data:
-
 networks:
   mernstack:
