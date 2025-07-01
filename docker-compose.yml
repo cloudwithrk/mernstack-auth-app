@@ -11,9 +11,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: root 
-      MYSQL_DATABASE: auth_task_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root 
+      MYSQL_DATABASE: auth_task_db 
     networks:
       - mernstack
    
