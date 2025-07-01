@@ -2,7 +2,7 @@ FROM node:20 AS builder
 
 WORKDIR /src 
 
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm install 
 
@@ -12,7 +12,7 @@ FROM node:20-alpine AS stack
 
 WORKDIR /app
 
-COPY --from=builder /src .
+COPY --from=builder /src ./
 
 EXPOSE 5000
 
