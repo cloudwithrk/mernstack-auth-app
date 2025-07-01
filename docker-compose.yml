@@ -1,0 +1,47 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: auth_task_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root 
+    networks:
+      - mernstack
+   
+  backend:
+    container_name: nodejs
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mysql
+    networks:
+      - mernstack
+  fronted:
+    container_name: reactjs
+    build:
+      context: ./fronted
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - mernstack
+  
+    
+    
+volumes:
+  mysql_data:
+networks:
+  mernstack:
