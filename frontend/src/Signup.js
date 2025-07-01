@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const API = "http://localhost:5000/api";
+const API = "http://34.245.178.39:5000/api";
 
 export default function Signup() {
   const [username, setUsername] = useState("");

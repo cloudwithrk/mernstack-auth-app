@@ -1,7 +1,7 @@
 // Dashboard.js
 import React, { useState, useEffect } from "react";
 
-const API = "http://localhost:5000/api";
+const API = "http://34.245.178.39:5000/api";
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);

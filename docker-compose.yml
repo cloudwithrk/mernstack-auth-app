@@ -8,6 +8,7 @@ services:
       - 3306:3306
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: root 
       MYSQL_DATABASE: auth_task_db
@@ -18,22 +19,16 @@ services:
    
   backend:
     container_name: nodejs
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: cloudwithrk/nodebackend:latest
     ports:
       - "5000:5000"
-    env_file:
-      - ./backend/.env
     depends_on:
       - mysql
     networks:
       - mernstack
   fronted:
     container_name: reactjs
-    build:
-      context: ./fronted
-      dockerfile: Dockerfile
+    image: cloudwithrk/reactfrontend:latest
     ports:
       - 3000:3000
     networks:
